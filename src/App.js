@@ -9,7 +9,7 @@ function App() {
 
 
   const getLatestMatches = () => {
-    const response = fetch(`https://battlefy-backend.onrender.com/api/latestMatches?summoner=${summonerInput}`)
+    fetch(`https://battlefy-backend.onrender.com/api/latestMatches?summoner=${summonerInput}`)
       .then(res => res.json())
       .then(res => setMatches(res))
       .catch((error) => {
@@ -21,16 +21,10 @@ function App() {
     setSummonerInput(event.target.value);
   };
 
-  
-//   <Fragment>
-//   <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-//   <Button variant="contained" onClick={() => getLatestMatches()}>Search</Button>
-// </Fragment>
-
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
+      <Grid container spacing={1}>
+        <Grid item xs={8} style={{margin: "5px"}}>
           <TextField 
             id="outlined-basic" 
             label="Outlined" 
@@ -38,7 +32,7 @@ function App() {
             value = {summonerInput}
             onChange = {handleTextFieldChange}/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} style={{margin: "5px"}}>
           <Button variant="contained" onClick={() => getLatestMatches()}>Search</Button>
         </Grid>
         <Grid item xs={12}>

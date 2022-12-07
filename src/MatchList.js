@@ -1,19 +1,15 @@
 import { Paper, Typography } from "@mui/material";
 import React, { Fragment, useState } from "react";
+import MatchItem from "./MatchItem"
 
 function MatchList({matches}) {
-    matches.map((element) => {
-        console.log(element);
-    })
     return (
         <Paper>
             {
                 matches.map((element) => {
                     console.log(element);
                     return(
-                        <Paper>
-                            <Typography>{element.summonerName}</Typography>
-                        </Paper>
+                        <MatchItem matchInfo={element}></MatchItem>
                     );
                 })
             }
