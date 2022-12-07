@@ -30,8 +30,6 @@ function MatchItem({matchInfo}) {
         }
     };
 
-    console.log(getImageSrcFromSpellKey(4));
-
     return (
         <Paper sx={{ flexGrow: 1 }} style={{backgroundColor: matchInfo.outcome ? "#6e8bff" : "#ff7a6e", padding: "20px", margin: "5px"}}>
             <Grid container spacing={2}>
@@ -44,10 +42,11 @@ function MatchItem({matchInfo}) {
                     <Box
                         component="img"
                         sx={{
-                        height: 30,
-                        width: 30,
-                        maxHeight: { xs: 30, md: 30 },
-                        maxWidth: { xs: 30, md: 30 },
+                        height: 50,
+                        width: 50,
+                        maxHeight: { xs: 50, md: 50 },
+                        maxWidth: { xs: 50, md: 50 },
+                        padding: "2px"
                         }}
                         alt=""
                         src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/${matchInfo.championName}.png`}
@@ -62,6 +61,7 @@ function MatchItem({matchInfo}) {
                                     width: 30,
                                     maxHeight: { xs: 30, md: 30 },
                                     maxWidth: { xs: 30, md: 30 },
+                                    padding: "2px"
                                     }}
                                     alt=""
                                     src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/${getImageSrcFromSpellKey(id)}.png`}
@@ -90,6 +90,7 @@ function MatchItem({matchInfo}) {
                                         width: 30,
                                         maxHeight: { xs: 30, md: 30 },
                                         maxWidth: { xs: 30, md: 30 },
+                                        padding: "2px"
                                         }}
                                         alt=""
                                         src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/7050.png`}
@@ -104,6 +105,7 @@ function MatchItem({matchInfo}) {
                                         width: 30,
                                         maxHeight: { xs: 30, md: 30 },
                                         maxWidth: { xs: 30, md: 30 },
+                                        padding: "2px"
                                         }}
                                         alt=""
                                         src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${item}.png`}
