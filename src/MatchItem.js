@@ -1,5 +1,6 @@
-import { Paper, Typography, Grid } from "@mui/material";
+import { Paper, Typography, Grid, Box } from "@mui/material";
 import React, { Fragment, useState } from "react";
+import spellList from './summoner.json';
 
 function MatchItem({matchInfo}) {
 
@@ -21,6 +22,16 @@ function MatchItem({matchInfo}) {
         return `${min}min ${seconds}s`;
     }
 
+    const getImageSrcFromSpellKey = (id) => {
+        for (var spellName in spellList.data) {
+            if (spellList.data[spellName].key === ("" + id)) {
+                return spellName
+            }
+        }
+    };
+
+    console.log(getImageSrcFromSpellKey(4));
+
     return (
         <Paper sx={{ flexGrow: 1 }} style={{backgroundColor: matchInfo.outcome ? "#6e8bff" : "#ff7a6e", padding: "20px", margin: "5px"}}>
             <Grid container spacing={2}>
@@ -30,6 +41,34 @@ function MatchItem({matchInfo}) {
                 </Grid>
                 <Grid item xs={3}>
                     <Typography>{matchInfo.championName}</Typography>
+                    <Box
+                        component="img"
+                        sx={{
+                        height: 30,
+                        width: 30,
+                        maxHeight: { xs: 30, md: 30 },
+                        maxWidth: { xs: 30, md: 30 },
+                        }}
+                        alt=""
+                        src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/champion/${matchInfo.championName}.png`}
+                    />
+                    {
+                        matchInfo.spells.map((id) => {
+                            return (
+                                <Box
+                                    component="img"
+                                    sx={{
+                                    height: 30,
+                                    width: 30,
+                                    maxHeight: { xs: 30, md: 30 },
+                                    maxWidth: { xs: 30, md: 30 },
+                                    }}
+                                    alt=""
+                                    src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/spell/${getImageSrcFromSpellKey(id)}.png`}
+                                />
+                            );
+                        })
+                    }
                 </Grid>
                 <Grid item xs={2}>
                     <Typography>{`${matchInfo.kills}/${matchInfo.deaths}/${matchInfo.assists}`}</Typography>
@@ -40,7 +79,39 @@ function MatchItem({matchInfo}) {
                     <Typography>{`${matchInfo.totalCreepScore} (${getCsPerMin()}) CS`}</Typography>
                 </Grid>
                 <Grid item xs={3}>
-                    <Typography>{getKdaRatio()}</Typography>
+                    {
+                        matchInfo.items.map(item => {
+                            if (item === 0) {
+                                return (
+                                    <Box
+                                        component="img"
+                                        sx={{
+                                        height: 30,
+                                        width: 30,
+                                        maxHeight: { xs: 30, md: 30 },
+                                        maxWidth: { xs: 30, md: 30 },
+                                        }}
+                                        alt=""
+                                        src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/7050.png`}
+                                    />
+                                );
+                            } else {
+                                return (
+                                    <Box
+                                        component="img"
+                                        sx={{
+                                        height: 30,
+                                        width: 30,
+                                        maxHeight: { xs: 30, md: 30 },
+                                        maxWidth: { xs: 30, md: 30 },
+                                        }}
+                                        alt=""
+                                        src={`http://ddragon.leagueoflegends.com/cdn/12.22.1/img/item/${item}.png`}
+                                    />
+                                );
+                            }
+                        })
+                    }
                 </Grid>
             </Grid>
         </Paper>
